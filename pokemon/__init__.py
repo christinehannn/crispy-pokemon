@@ -27,11 +27,11 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
 
     from pokemon.users.routes import users
-    from pokemon.posts.routes import posts
+    from pokemon.pokemons.routes import pokemons
     from pokemon.main.routes import main
     from pokemon.errors.handlers import errors
     app.register_blueprint(users)
-    app.register_blueprint(posts)
+    app.register_blueprint(pokemons)
     app.register_blueprint(main)
     app.register_blueprint(errors)
 
