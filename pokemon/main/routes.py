@@ -4,7 +4,7 @@ from flask import (
     request,
 )
 
-from pokemon.models import Post
+from pokemon.models import Pokemon
 
 main = Blueprint('main', __name__)
 
@@ -13,8 +13,8 @@ main = Blueprint('main', __name__)
 @main.route('/home')
 def home():
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(
-        Post.date_posted.desc()
+    pokemons = Pokemon.query.order_by(
+        Pokemon.date_created.desc()
     ).paginate(
         page=page,
         per_page=5
