@@ -9,6 +9,6 @@ from wtforms.validators import DataRequired
 
 class PokemonForm(FlaskForm):
 
-    title = StringField('Title', validators=[DataRequired()])
-    content = TextAreaField('Content', validators=[DataRequired()])
-    submit = SubmitField('Post')
+    name = StringField('Name', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    submit = SubmitField('Save')

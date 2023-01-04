@@ -19,7 +19,7 @@ def home():
         page=page,
         per_page=5
     )
-    return render_template('home.html', posts=posts)
+    return render_template('home.html', pokemons=pokemons)
 
 
 @main.route('/about')

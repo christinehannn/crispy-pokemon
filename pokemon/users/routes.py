@@ -123,18 +123,18 @@ def account():
 
 
 @users.route('/user/<string:username>')
-def user_posts(username):
+def user_pokemons(username):
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
-    posts = Pokemon.query.filter_by(
-        author=user
+    pokemons = Pokemon.query.filter_by(
+        trainer=user
     ).order_by(
-        Pokemon.date_posted.desc()
+        Pokemon.date_created.desc()
     ).paginate(
         page=page,
         per_page=5
     )
-    return render_template('user_posts.html', posts=posts, user=user)
+    return render_template('user_pokemons.html', pokemons=pokemons, user=user)
 
 
 @users.route('/reset-password', methods=['GET', 'POST'])

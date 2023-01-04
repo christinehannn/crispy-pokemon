@@ -3,22 +3,22 @@
   <article class="media content-section">
     <img
       class="rounded-circle article-img"
-      src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}"
+      src="{{ url_for('static', filename='profile_pics/' + pokemon.trainer.image_file) }}"
     />
     <div class="media-body">
       <div class="article-metadata">
         <a
           class="mr-2"
-          href="{{ url_for('users.user_posts', username=post.author.username) }}"
+          href="{{ url_for('users.user_pokemons', username=pokemon.trainer.username) }}"
         >
-          {{ post.author.username }}
+          {{ pokemon.trainer.username }}
         </a>
-        <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
-        {% if post.author == current_user %}
+        <small class="text-muted">{{ pokemon.date_created.strftime('%Y-%m-%d') }}</small>
+        {% if pokemon.trainer == current_user %}
           <div>
             <a
               class="btn btn-secondary btn-sm mt-1 mb-1"
-              href="{{ url_for('posts.update_post', post_id=post.id) }}"
+              href="{{ url_for('pokemons.update_pokemon', pokemon_id=pokemon.id) }}"
             >
               Update
             </a>
@@ -33,8 +33,8 @@
           </div>
         {% endif %}
       </div>
-      <h2 class="article-title">{{ post.title }}</h2>
-      <p class="article-content">{{ post.content }}</p>
+      <h2 class="article-title">{{ pokemon.title }}</h2>
+      <p class="article-content">{{ pokemon.content }}</p>
     </div>
   </article>
   <!-- Modal -->
@@ -42,12 +42,12 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Post?</h1>
+          <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Pokemon?</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
+          <form action="{{ url_for('pokemons.delete_pokemon', pokemon_id=pokemon.id) }}" method="POST">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
         </div>

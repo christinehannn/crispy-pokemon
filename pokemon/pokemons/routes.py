@@ -19,65 +19,65 @@ from pokemon.pokemons.forms import PokemonForm
 pokemons = Blueprint('pokemons', __name__)
 
 
-@pokemons.route('/post/new', methods=['GET', 'POST'])
+@pokemons.route('/pokemon/new', methods=['GET', 'POST'])
 @login_required
-def new_post():
+def new_pokemon():
     form = PokemonForm()
     if form.validate_on_submit():
         pokemon = Pokemon(
-            title=form.title.data,
-            content=form.content.data,
-            author=current_user
+            name=form.name.data,
+            description=form.description.data,
+            trainer=current_user
         )
-        db.session.add(post)
+        db.session.add(pokemon)
         db.session.commit()
-        flash('Your post has been created!', 'success')
+        flash('Your Pokemon has been created!', 'success')
         return redirect(url_for('main.home'))
     return render_template(
-        'create_post.html',
-        title='New Post',
+        'create_pokemon.html',
+        title='New Pokemon',
         form=form,
-        legend='New Post'
+        legend='New Pokemon'
     )
 
 
-@pokemons.route('/post/<int:post_id>')
-def post(post_id):
-    post = Pokemon.query.get_or_404(post_id)
-    return render_template('post.html', title=post.title, post=post)
+@pokemons.route('/pokemon/<int:pokemon_id>')
+def pokemon(pokemon_id):
+    pokemon = Pokemon.query.get_or_404(pokemon_id)
+    return render_template('pokemon.html', title=pokemon.title, pokemon=pokemon)
 
 
-@pokemons.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
+@pokemons.route('/pokemon/<int:pokemon_id>/update', methods=['GET', 'POST'])
 @login_required
-def update_post(post_id):
-    post = Pokemon.query.get_or_404(post_id)
-    if post.author != current_user:
+def update_pokemon(pokemon_id):
+    pokemon = Pokemon.query.get_or_404(pokemon_id)
+    if pokemon.trainer != current_user:
         abort(403)
     form = PokemonForm()
     if form.validate_on_submit():
-        post.title = form.title.data
-        post.content = form.content.data
+        pokemon.name = form.name.data
+        pokemon.description = form.description.data
         db.session.commit()
-        flash('Your post has been updated!', 'success')
-        return redirect(url_for('posts.post', post_id=post.id))
+        flash('Your pokemon has been updated!', 'success')
+        return redirect(url_for('pokemons.pokemon', pokemon_id=pokemon.id))
     elif request.method == 'GET':
-        form.title.data = post.title
-        form.content.data = post.content
+        form.name.data = pokemon.name
+        form.description.data = pokemon.description
     return render_template(
-        'create_post.html',
-        title='Update Post',
+        'create_pokemon.html',
+        title='Update Pokemon',
         form=form,
-        legend='Update Post'
+        legend='Update Pokemon'
     )
 
 
-@pokemons.route('/post/<int:post_id>/delete', methods=['POST'])
+@pokemons.route('/pokemon/<int:pokemon_id>/delete', methods=['POST'])
 @login_required
-def delete_post(post_id):
-    post = Pokemon.query.get_or_404(post_id)
-    if post.author != current_user:
+def delete_pokemon(pokemon_id):
+    pokemon = Pokemon.query.get_or_404(pokemon_id)
+    if pokemon.trainer != current_user:
         abort(403)
-    db.session.delete(post)
+    db.session.delete(pokemon)
     db.session.commit()
-    flash('Your post has been deleted!', 'success')
+    flash('Your Pokemon has been deleted!', 'success')
     return redirect(url_for('main.home'))
