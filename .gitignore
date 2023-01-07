@@ -131,4 +131,4 @@ dmypy.json
 # PyCharm
 .idea/
 
-flaskblog/site.db
+pokemon/site.db

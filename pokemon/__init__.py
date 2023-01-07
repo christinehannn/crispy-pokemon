@@ -1,3 +1,5 @@
+import os
+
 from dotenv import load_dotenv
 
 from flask import Flask
@@ -20,7 +22,7 @@ login_manager.login_message_category = 'info'
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('pokemon.config')
+    app.config.from_object('pokemon.config.Config')
 
     db.init_app(app)
 
