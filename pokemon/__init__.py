@@ -22,7 +22,9 @@ login_manager.login_message_category = 'info'
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('pokemon.config.Config')
+    # app.config.from_object('pokemon.config.Config')
+    app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('SQLALCHEMY_DATABASE_URI')
 
     db.init_app(app)
 
