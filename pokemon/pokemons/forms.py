@@ -21,5 +21,5 @@ class PokemonForm(FlaskForm):
         'Upload Pokemon picture',
         validators=[FileAllowed(['jpg', 'png'])]
     )
-    date_caught = DateTimeField('Date Caught')
+    date_caught = DateTimeField('Date Caught', format='%m/%d/%Y')
     submit = SubmitField('Save')

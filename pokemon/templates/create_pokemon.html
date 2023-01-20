@@ -19,6 +19,19 @@
         {% endif %}
       </div>
       <div class="col-xs-12 mb-3">
+        {{ form.date_caught.label(class="form-control-label") }}
+        {% if form.date_caught.errors %}
+          {{ form.date_caught(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.date_caught.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.date_caught(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="col-xs-12 mb-3">
         {{ form.type.label(class="form-control-label") }}
         {% if form.type.errors %}
           {{ form.type(class="form-control form-control-lg is-invalid") }}
@@ -42,6 +55,17 @@
           </div>
         {% else %}
           {{ form.description(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="col-xs-12 mb-3">
+        {{ form.image_file.label(class="form-control-label") }}
+        <br />
+        {{ form.image_file(class="form-control-file") }}
+        <br />
+        {% if form.image_file.errors %}
+          {% for error in form.image_file.errors %}
+            <span class="text-danger">{{ error }}</span><br />
+          {% endfor %}
         {% endif %}
       </div>
       <div class="col-xs-12 mb-3">
