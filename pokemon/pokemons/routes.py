@@ -33,7 +33,7 @@ def new_pokemon():
             trainer=current_user,
         )
         if form.image_file.data:
-            image_file = save_picture(form.image_file.data)
+            image_file = save_picture(form.image_file.data, 'pokemon_pics')
             pokemon.image_file = image_file
         db.session.add(pokemon)
         db.session.commit()
@@ -66,7 +66,7 @@ def update_pokemon(pokemon_id):
         pokemon.type = form.type.data
         pokemon.description = form.description.data
         if form.image_file.data:
-            image_file = save_picture(form.image_file.data)
+            image_file = save_picture(form.image_file.data, 'pokemon_pics')
             pokemon.image_file = image_file
         db.session.commit()
         flash('Your pokemon has been updated!', 'success')

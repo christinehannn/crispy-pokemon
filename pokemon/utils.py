@@ -24,13 +24,13 @@ def send_mailgun_email(
     )
 
 
-def save_picture(form_picture):
+def save_picture(form_picture, picture_directory):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(
         current_app.root_path,
-        'static/profile_pics',
+        f'static/{picture_directory}',
         picture_fn
     )
 
