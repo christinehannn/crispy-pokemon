@@ -15,7 +15,7 @@ from flask_login import (
 from pokemon import db
 from pokemon.models import Pokemon
 from pokemon.pokemons.forms import PokemonForm
-from pokemon.users.utils import save_picture
+from pokemon.utils import save_picture
 
 pokemons = Blueprint('pokemons', __name__)
 

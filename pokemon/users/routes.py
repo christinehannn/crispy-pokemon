@@ -29,9 +29,9 @@ from pokemon.users.forms import (
     UpdateAccountForm,
 )
 from pokemon.users.utils import (
-    save_picture,
     send_reset_email,
 )
+from pokemon.utils import save_picture
 
 users = Blueprint('users', __name__)
 
