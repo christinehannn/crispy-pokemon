@@ -133,3 +133,4 @@ dmypy.json
 
 pokemon/site.db
 pokemon/static/profile_pics/
+pokemon/static/pokemon_pics/
