@@ -27,9 +27,11 @@
         <p class="article-description">{{ pokemon.type }}</p>
         <p class="article-description">{{ pokemon.date_caught }}</p>
         <p class="article-description">{{ pokemon.description }}</p>
-        <img
-          src="{{ url_for('static', filename='profile_pics/' + pokemon.trainer.image_file) }}"
-        />
+        {% if pokemon.image_file %}
+          <img
+            src="{{ url_for('static', filename='pokemon_pics/' + pokemon.image_file) }}"
+          />
+        {% endif %}
       </div>
     </article>
   {% endfor %}
