@@ -132,3 +132,4 @@ dmypy.json
 .idea/
 
 pokemon/site.db
+pokemon/static/profile_pics/
