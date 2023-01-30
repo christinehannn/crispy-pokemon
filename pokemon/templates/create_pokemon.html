@@ -21,14 +21,14 @@
       <div class="col-xs-12 mb-3">
         {{ form.date_caught.label(class="form-control-label") }}
         {% if form.date_caught.errors %}
-          {{ form.date_caught(class="form-control form-control-lg is-invalid") }}
+          {{ form.date_caught(class="form-control form-control-lg is-invalid", placeholder="mm/dd/yyyy") }}
           <div class="invalid-feedback">
             {% for error in form.date_caught.errors %}
               <span>{{ error }}</span>
             {% endfor %}
           </div>
         {% else %}
-          {{ form.date_caught(class="form-control form-control-lg") }}
+          {{ form.date_caught(class="form-control form-control-lg", placeholder="mm/dd/yyyy") }}
         {% endif %}
       </div>
       <div class="col-xs-12 mb-3">
