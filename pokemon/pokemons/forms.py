@@ -9,7 +9,10 @@ from wtforms import (
     TextAreaField,
     DateTimeField,
 )
-from wtforms.validators import DataRequired
+from wtforms.validators import (
+    DataRequired,
+    Optional,
+)
 
 
 class PokemonForm(FlaskForm):
@@ -21,5 +24,9 @@ class PokemonForm(FlaskForm):
         'Upload Pokemon picture',
         validators=[FileAllowed(['jpg', 'png'])]
     )
-    date_caught = DateTimeField('Date Caught', format='%m/%d/%Y')
+    date_caught = DateTimeField(
+        'Date Caught',
+        format='%m/%d/%Y',
+        validators=[Optional()]
+    )
     submit = SubmitField('Save')
