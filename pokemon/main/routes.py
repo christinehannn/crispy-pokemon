@@ -20,8 +20,3 @@ def home():
         per_page=5
     )
     return render_template('home.html', pokemons=pokemons)
-
-
-@main.route('/about')
-def about():
-    return render_template('about.html', title='About')
