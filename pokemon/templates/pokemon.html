@@ -13,7 +13,7 @@
         >
           {{ pokemon.trainer.username }}
         </a>
-        <small class="text-muted">{{ pokemon.date_created.strftime('%Y-%m-%d') }}</small>
+        <small class="text-muted">{{ pokemon.date_created.strftime('%m/%d/%Y') }}</small>
         {% if pokemon.trainer == current_user %}
           <div>
             <a
@@ -38,7 +38,7 @@
         <p class="article-description">Type: {{ pokemon.type }}</p>
       {% endif %}
       {% if pokemon.date_caught %}
-        <p class="article-description">Date Caught: {{ pokemon.date_caught }}</p>
+        <p class="article-description">Date Caught: {{ pokemon.date_caught.strftime('%m/%d/%Y') }}</p>
       {% endif %}
       <p class="article-description">Description: {{ pokemon.description }}</p>
       {% if pokemon.image_file %}
